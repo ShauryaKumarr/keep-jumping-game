@@ -29,3 +29,4 @@ the highest score.
 - [ ] Make the platforms progressively fall faster 
 - [ ] Add a score in the form of time alive
 - [ ] Make any final adjustments 
+- [ ] Add a background or other aesthetics if time available

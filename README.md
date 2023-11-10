@@ -15,11 +15,11 @@ the highest score.
 <u>Phase 1</u>
 - [ ] Create a character 
 - [ ] Create proper movements (left, right, jump up)
-- [ ] Code and enact gravity on character
 - [ ] Create movement boundaries (character that goes off 
    the screen to the right will enter the left, vice-versa)
 
 <u>Phase 2</u>
+- [ ] Code and enact gravity on character
 - [ ] Create platforms that fall one by one randomly
 - [ ] Create boundaries for the platforms
 - [ ] Add collision between the character and platform

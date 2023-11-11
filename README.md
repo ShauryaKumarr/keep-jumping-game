@@ -13,9 +13,9 @@ will be calculated until the very end, and the goal is to achieve
 the highest score. 
 
 <u>Phase 1</u>
-- [ ] Create a character 
-- [ ] Create proper movements (left, right, jump up)
-- [ ] Create movement boundaries (character that goes off 
+- [X] Create a character 
+- [X] Create proper movements (left, right, jump up)
+- [X] Create movement boundaries (character that goes off 
    the screen to the right will enter the left, vice-versa)
 
 <u>Phase 2</u>

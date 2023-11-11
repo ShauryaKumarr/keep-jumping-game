@@ -30,3 +30,5 @@ the highest score.
 - [ ] Add a score in the form of time alive
 - [ ] Make any final adjustments 
 - [ ] Add a background or other aesthetics if time available
+
+Milestone 1 Update Youtube Link: https://youtu.be/-OVik39gFQk

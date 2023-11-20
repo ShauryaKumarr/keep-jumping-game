@@ -36,3 +36,5 @@ different attributes such as being able to follow you as a character
 - [ ] Make movement more efficient, and update theme if needed.
 
 Milestone 1 Update Youtube Link: https://youtu.be/-OVik39gFQk
+
+Milestone 2 Update Youtube Link: https://youtu.be/IfYWO-KeeWA

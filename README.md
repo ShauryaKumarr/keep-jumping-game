@@ -2,7 +2,11 @@ Shaurya Kumar, shaurya@udel.edu
 
 Game Idea: The Apple Collector
 
-Description: The Apple Collector 
+Description: The Apple Collector is a game where a user controls a character, and the objective 
+involves collecting as much apples as possible without hitting the bombs. As the game progresses,
+the game becomes more and more challenging, with the bombs size increasing as the score increases. However, 
+there are also both debuffs and buffs, that can help you or end up finishing you. The goal is 
+to get the highest score possible!
 
 <u>Phase 1</u>
 - [X] Create a character 

@@ -1,34 +1,34 @@
 Shaurya Kumar, shaurya@udel.edu
 
-Game Idea: Keep Jumping 
+Game Idea: The Apple Collector
 
-Description: Keep Jumping is a game heavily based off the
-popular mobile game, Doodle Jump. Within this game, the player will
-continue to jump onto platforms that fall from the sky, and 
-if the player icon hits the ground, the game will eventually
-end. If the player does not hit the ground, however, as time
-goes by, the platforms will continue to fall faster and faster
-to make the challenge of keeping up increasingly harder. Score
-will be calculated until the very end, and the goal is to achieve
-the highest score. 
+Description: The Apple Collector 
 
 <u>Phase 1</u>
 - [X] Create a character 
-- [X] Create proper movements (left, right, jump up)
+- [X] Create proper movements (left, right, up, down)
 - [X] Create movement boundaries (character that goes off 
    the screen to the right will enter the left, vice-versa)
 
 <u>Phase 2</u>
-- [ ] Code and enact gravity on character
-- [ ] Create platforms that fall one by one randomly
-- [ ] Create boundaries for the platforms
-- [ ] Add collision between the character and platform
+- [X] Create an apple object
+- [X] Create a bomb object
+- [X] Create proper drop rates for both objects
+- [X] Add collision between the character and apple, which 
+results in a score increase and the apple to disappear
+- [X] Add collision between character and bomb, which results 
+in the game being over.
+- [X] Add scaling as score increases, to make the game more difficult
+  (i.e bombs getting bigger after a certain score)
+- [X] Create scoreboard
 
 <u>Phase 3</u>
-- [ ] Make the game end when character hits ground
-- [ ] Make the platforms progressively fall faster 
-- [ ] Add a score in the form of time alive
-- [ ] Make any final adjustments 
-- [ ] Add a background or other aesthetics if time available
+- [ ] Add different power ups, such as the character becoming faster 
+or bombs returning to original size
+- [ ] Make the game progressively difficult with bombs possibly having 
+different attributes such as being able to follow you as a character
+- [ ] Add effects when bomb or apple is collided with
+- [ ] Make game more aesthetic, possibly have different backgrounds
+- [ ] Make movement more efficient, and update theme if needed.
 
 Milestone 1 Update Youtube Link: https://youtu.be/-OVik39gFQk

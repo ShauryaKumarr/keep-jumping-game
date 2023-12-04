@@ -9,6 +9,8 @@ higher score you get, dodge all of the comets and meteors barrelling at you,
 collect power ups to assist you, and collect as many stars as you can! Embark on an interstellar 
 journey, defy the challenges thrown at you, and become the best star runner!"
 
+<b> Preview: </b>
+
 <b>Instructions:</b>
 
 Objective:
@@ -94,7 +96,8 @@ in the game being over.
 - [X] Add size reset power-up
 - [X] Make the game progressively difficult with bombs possibly having 
 different attributes such as being able to follow you as a character
-- [X] Add effects when bomb or apple is collided with
+- [X] Create an object that follows you after a certain threshold score
+- [X] Create different ending messages depending on your score
 - [X] Make movement more efficient, and update theme if needed.
 
 Milestone 1 Update Youtube Link: https://youtu.be/-OVik39gFQk

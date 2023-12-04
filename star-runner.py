@@ -15,6 +15,9 @@ class Rocks(Emoji):
 
 @dataclass
 class Game:
+    '''
+    Represents the game state with various attributes.
+    '''
     character: DesignerObject
     character_speed: int
     character_speed_y: int
@@ -39,6 +42,11 @@ class Game:
 
 
 def create_character() -> DesignerObject:
+    '''
+    Creates a character that is controlled by the user
+    Returns:
+        DesignerObject: The created character
+    '''
     character = emoji('🛸')
     character.scale_x = 1.2
     character.scale_y = 1.2
@@ -48,6 +56,11 @@ def create_character() -> DesignerObject:
 
 
 def move_character(game: Game):
+    '''
+    Moves the character based on the game state.
+    Args:
+        game (Game): The game state
+    '''
     if game.speed_boost_active and (time.time() - game.speed_boost_start_time) < game.speed_boost_duration:
         game.character.x += game.character_speed * 2  # Double speed during boost
     else:
@@ -55,32 +68,63 @@ def move_character(game: Game):
 
 
 def move_character_y(game: Game):
+    '''
+    Moves the character vertically based on the game state.
+    Args:
+        game (Game): The game state
+    '''
     game.character.y -= game.character_speed_y
 
 
 def move_left(game: Game):
+    '''
+    Moves the character to the left.
+    Args:
+        game (Game): The game state.
+    '''
     characterspeed = 10
     game.character_speed = -characterspeed
     game.character.flip_x = True
 
 
 def move_right(game: Game):
+    '''
+    Move the character to the right.
+    Args:
+        game (Game): The game state.
+    '''
     characterspeed = 10
     game.character_speed = characterspeed
     game.character.flip_x = False
 
 
 def move_up(game: Game):
+    '''
+    Move the character upwards.
+    Args:
+        game (Game): The game state.
+    '''
     characterspeed_y = 10
     game.character_speed_y = characterspeed_y
 
 
 def move_down(game: Game):
+    '''
+    Move the character downwards.
+    Args:
+        game (Game): The game state.
+    '''
     characterspeed_y = -10
     game.character_speed_y = characterspeed_y
 
 
 def change_direction(game: Game, key: str):
+    '''
+    Change the character's direction based on the provided key.
+    Args:
+        game (Game): The game state.
+        key (str): The key representing the direction change.
+    '''
     if key == 'left':
         move_left(game)
     if key == 'right':
@@ -92,12 +136,23 @@ def change_direction(game: Game, key: str):
 
 
 def stop_character_movement(game: Game, key: str):
+    '''
+    Stop the character's movement based on the provided key.
+    Args:
+        game (Game): The game state.
+        key (str): The key representing the movement direction to stop.
+    '''
     if key == 'right' or key == 'left' or key == 'up' or key == 'down':
         game.character_speed = 0
         game.character_speed_y = 0
 
 
 def opposite_entrance(game: Game):
+    '''
+    Teleport the character to the opposite side of the screen if it goes out of bounds.
+    Args:
+        game (Game): The game state.
+    '''
     if game.character.x > get_width():
         game.character.x = 0
     elif game.character.x < 0:
@@ -105,6 +160,11 @@ def opposite_entrance(game: Game):
 
 
 def create_star() -> DesignerObject:
+    '''
+    Create a star object.
+    Returns:
+        DesignerObject: The created star object.
+    '''
     star = emoji('🌟')
     star.scale_x = 1
     star.anchor = 'midtop'
@@ -114,6 +174,11 @@ def create_star() -> DesignerObject:
 
 
 def create_reset_powerup() -> DesignerObject:
+    '''
+    Create a reset power-up object.
+    Returns:
+        DesignerObject: The created reset power-up object.
+    '''
     reset = emoji('🔄')
     reset.x = randint(0, get_width())
     reset.y = 0
@@ -121,6 +186,11 @@ def create_reset_powerup() -> DesignerObject:
 
 
 def make_reset_powerup(game: Game):
+    '''
+    Create a reset power-up and add it to the game if conditions are met.
+    Args:
+        game (Game): The game state.
+    '''
     limited_amt_of_resets = len(game.reset_powerup) < 3
     random_chance = randint(1, 600) == 300
     if random_chance and limited_amt_of_resets:
@@ -128,6 +198,11 @@ def make_reset_powerup(game: Game):
 
 
 def make_star(game: Game):
+    '''
+    Create a star and add it to the game if conditions are met.
+    Args:
+        game (Game): The game state.
+    '''
     limited_amt_of_stars = len(game.stars) < 9
     random_chance = randint(1, 75) == 50
     if random_chance and limited_amt_of_stars:
@@ -135,6 +210,11 @@ def make_star(game: Game):
 
 
 def create_frenzy_powerup() -> DesignerObject:
+    '''
+    Create a frenzy power-up object.
+    Returns:
+        DesignerObject: The created frenzy power-up object.
+    '''
     frenzy = emoji('💵')
     frenzy.scale_x = 1
     frenzy.anchor = 'midtop'
@@ -144,6 +224,11 @@ def create_frenzy_powerup() -> DesignerObject:
 
 
 def make_frenzy_powerup(game: Game):
+    '''
+    Create a frenzy power-up and add it to the game if conditions are met.
+    Args:
+        game (Game): The game state.
+    '''
     limited_amt_of_frenzies = len(game.frenzy_list) < 3
     random_chance = randint(1, 750) == 375
     if random_chance and limited_amt_of_frenzies:
@@ -151,6 +236,11 @@ def make_frenzy_powerup(game: Game):
 
 
 def destroy_stars_on_ground(game: Game):
+    '''
+    Remove stars that have reached the bottom of the screen.
+    Args:
+        game (Game): The game state.
+    '''
     kept_stars = []
     for star in game.stars:
         if star.y < get_height():
@@ -161,6 +251,11 @@ def destroy_stars_on_ground(game: Game):
 
 
 def create_comet() -> DesignerObject:
+    '''
+    Create a comet object.
+    Returns:
+        DesignerObject: The created comet object.
+    '''
     comet = emoji('comet')
     comet.scale_x = 1.3
     comet.scale_y = 1.3
@@ -171,6 +266,11 @@ def create_comet() -> DesignerObject:
 
 
 def make_comet(game: Game):
+    '''
+    Create a comet and add it to the game if conditions are met.
+    Args:
+        game (Game): The game state.
+    '''
     limited_amt_of_comets = len(game.stars) < 14
     random_chance = randint(1, 40) == 25
     if random_chance and limited_amt_of_comets:
@@ -178,6 +278,11 @@ def make_comet(game: Game):
 
 
 def destroy_reset_on_ground(game: Game):
+    '''
+    Remove reset power-ups that have reached the bottom of the screen.
+    Args:
+        game (Game): The game state.
+    '''
     kept_resets = []
     for reset in game.reset_powerup:
         if reset.y < get_height():
@@ -188,6 +293,11 @@ def destroy_reset_on_ground(game: Game):
 
 
 def destroy_lightning_on_ground(game: Game):
+    '''
+    Remove lightning objects that have reached the bottom of the screen.
+    Args:
+        game (Game): The game state.
+    '''
     kept_lightning = []
     for lightning in game.lightning:
         if lightning.y < get_height():
@@ -198,6 +308,11 @@ def destroy_lightning_on_ground(game: Game):
 
 
 def destroy_comets_on_ground(game: Game):
+    '''
+    Remove comets that have reached the bottom of the screen.
+    Args:
+        game (Game): The game state.
+    '''
     kept_comets = []
     for comet in game.comets:
         if comet.y < get_height():
@@ -208,6 +323,11 @@ def destroy_comets_on_ground(game: Game):
 
 
 def destroy_frenzy_on_ground(game: Game):
+    '''
+    Remove frenzy power-ups that have reached the bottom of the screen.
+    Args:
+        game (Game): The game state.
+    '''
     kept_frenzies = []
     for frenzy in game.frenzy_list:
         if frenzy.y < get_height():
@@ -218,6 +338,11 @@ def destroy_frenzy_on_ground(game: Game):
 
 
 def generate_mass_stars(game: Game):
+    '''
+    Generate stars in mass during a frenzy period.
+    Args:
+        game (Game): The game state.
+    '''
     if game.frenzy_active and (time.time() - game.frenzy_start_time) < game.frenzy_duration:
         game.stars.append(create_star())
     else:
@@ -225,6 +350,11 @@ def generate_mass_stars(game: Game):
 
 
 def create_lightning() -> DesignerObject:
+    '''
+    Create a lightning object.
+    Returns:
+        DesignerObject: The created lightning object.
+    '''
     lightning = emoji('⚡')
     lightning.x = randint(0, get_width())
     lightning.y = 0
@@ -232,6 +362,11 @@ def create_lightning() -> DesignerObject:
 
 
 def make_lightning(game: Game):
+    '''
+    Create lightning and add it to the game if conditions are met.
+    Args:
+        game (Game): The game state.
+    '''
     limited_amt_of_lightning = len(game.lightning) < 2
     random_chance = randint(1, 300) == 100
     if random_chance and limited_amt_of_lightning:
@@ -239,6 +374,11 @@ def make_lightning(game: Game):
 
 
 def make_objects_drop(game: Game):
+    '''
+    Move game objects (stars, comets, lightning, frenzy power-ups, resets) downward.
+    Args:
+        game (Game): The game state.
+    '''
     for star in game.stars:
         star.y += 8
     for comet in game.comets:
@@ -252,6 +392,11 @@ def make_objects_drop(game: Game):
 
 
 def collide_character_with_star(game: Game):
+    '''
+    Handle collisions between the character and stars.
+    Args:
+        game (Game): The game state.
+    '''
     destroyed_stars = []
     for star in game.stars:
         if colliding(game.character, star):
@@ -261,6 +406,11 @@ def collide_character_with_star(game: Game):
 
 
 def collide_character_with_lightning(game: Game):
+    '''
+    Handle collisions between the character and lightning.
+    Args:
+        game (Game): The game state.
+    '''
     destroyed_lightning = []
     for lightning in game.lightning:
         if colliding(game.character, lightning):
@@ -271,6 +421,13 @@ def collide_character_with_lightning(game: Game):
 
 
 def collide_character_with_comet(game: Game) -> bool:
+    '''
+    Check if the character collides with any comets.
+    Args:
+        game (Game): The game state.
+    Returns:
+        bool: True if a collision occurs, False otherwise.
+    '''
     comet_collision = False
     for comet in game.comets:
         if colliding(game.character, comet):
@@ -279,6 +436,15 @@ def collide_character_with_comet(game: Game) -> bool:
 
 
 def collide_character_with_rock(game: Game) -> bool:
+    '''
+    Check if the character collides with any rocks.
+
+    Args:
+        game (Game): The game state.
+
+    Returns:
+        bool: True if a collision occurs, False otherwise.
+    '''
     rock_collision = False
     for rock in game.rocks_list:
         if colliding(game.character, rock):
@@ -287,6 +453,11 @@ def collide_character_with_rock(game: Game) -> bool:
 
 
 def collide_character_with_frenzy(game: Game):
+    '''
+    Handle collisions between the character and frenzy power-ups.
+    Args:
+        game (Game): The game state.
+    '''
     destroyed_frenzy = []
     for frenzy in game.frenzy_list:
         if colliding(game.character, frenzy):
@@ -297,6 +468,11 @@ def collide_character_with_frenzy(game: Game):
 
 
 def collide_character_with_reset(game: Game):
+    '''
+    Handle collisions between the character and reset power-ups.
+    Args:
+        game (Game): The game state.
+    '''
     destroyed_resets = []
     for reset in game.reset_powerup:
         if colliding(game.character, reset):
@@ -311,8 +487,15 @@ def collide_character_with_reset(game: Game):
     game.reset_powerup = filter_resets(game.reset_powerup, destroyed_resets)
 
 
-
 def filter_resets(reset_list: list[DesignerObject], resets_not_to_keep: list[DesignerObject]) -> list[DesignerObject]:
+    '''
+    Filter out resets that should not be kept based on a list of resets not to keep.
+    Args:
+        reset_list (list[DesignerObject]): List of reset power-ups.
+        resets_not_to_keep (list[DesignerObject]): List of resets that should be filtered out.
+    Returns:
+        list[DesignerObject]: New list of resets after filtering.
+    '''
     new_reset_list = []
     for reset in reset_list:
         if reset in resets_not_to_keep:
@@ -324,6 +507,14 @@ def filter_resets(reset_list: list[DesignerObject], resets_not_to_keep: list[Des
 
 def filter_lightning(lightning_list: list[DesignerObject], lightning_not_to_keep: list[DesignerObject]) -> list[
     DesignerObject]:
+    '''
+    Filter out lightning objects that should not be kept based on a list of lightning objects not to keep.
+    Args:
+        lightning_list (list[DesignerObject]): List of lightning objects.
+        lightning_not_to_keep (list[DesignerObject]): List of lightning objects that should be filtered out.
+    Returns:
+        list[DesignerObject]: New list of lightning objects after filtering.
+    '''
     new_lightning_list = []
     for lightning in lightning_list:
         if lightning in lightning_not_to_keep:
@@ -334,6 +525,14 @@ def filter_lightning(lightning_list: list[DesignerObject], lightning_not_to_keep
 
 
 def filter_stars(stars_list: list[DesignerObject], stars_not_to_keep: list[DesignerObject]) -> list[DesignerObject]:
+    '''
+    Filter out stars that should not be kept based on a list of stars not to keep.
+    Args:
+        stars_list (list[DesignerObject]): List of stars.
+        stars_not_to_keep (list[DesignerObject]): List of stars that should be filtered out.
+    Returns:
+        list[DesignerObject]: New list of stars after filtering.
+    '''
     new_star_list = []
     for star in stars_list:
         if star in stars_not_to_keep:
@@ -345,6 +544,14 @@ def filter_stars(stars_list: list[DesignerObject], stars_not_to_keep: list[Desig
 
 def filter_frenzies(frenzy_list: list[DesignerObject], frenzy_not_to_keep: list[DesignerObject]) -> list[
     DesignerObject]:
+    '''
+    Filter out frenzy power-ups that should not be kept based on a list of frenzies not to keep.
+    Args:
+        frenzy_list (list[DesignerObject]): List of frenzy power-ups.
+        frenzy_not_to_keep (list[DesignerObject]): List of frenzy power-ups that should be filtered out.
+    Returns:
+        list[DesignerObject]: New list of frenzy power-ups after filtering.
+    '''
     new_frenzy_list = []
     for frenzy in frenzy_list:
         if frenzy in frenzy_not_to_keep:
@@ -355,7 +562,12 @@ def filter_frenzies(frenzy_list: list[DesignerObject], frenzy_not_to_keep: list[
 
 
 def make_comets_bigger(game: Game):
-    base_comet_scale_factor = 1.05  # Adjust this factor based on your preference
+    '''
+    Make comets bigger based on the game score.
+    Args:
+        game (Game): The game state.
+    '''
+    base_comet_scale_factor = 1.05
 
     if game.score >= game.comet_scale_interval and game.score % game.comet_scale_interval == 0:
         game.last_comet_scale_factor = base_comet_scale_factor * (1 + game.score // game.comet_scale_interval)
@@ -364,11 +576,24 @@ def make_comets_bigger(game: Game):
         comet.scale_x = game.last_comet_scale_factor
         comet.scale_y = game.last_comet_scale_factor
 
+
 def create_rocks(character: DesignerObject) -> Rocks:
+    '''
+    Create rocks based on the character position.
+    Args:
+        character (DesignerObject): The character object.
+    Returns:
+        Rocks: The created rocks object.
+    '''
     return Rocks('🪨', speed=3.0, direction=0, x=randint(0, get_width()), y=0, creation_time=time.time())
 
 
 def move_rocks(game: Game):
+    '''
+    Move rocks based on the character's position.
+    Args:
+        game (Game): The game state.
+    '''
     current_time = time.time()
     for rock in game.rocks_list:
         angle = get_angle(game.character, rock)
@@ -384,6 +609,11 @@ def move_rocks(game: Game):
 
 
 def make_rocks(game: Game):
+    '''
+    Generate rocks in the game based on certain conditions.
+    Args:
+        game (Game): The game state.
+    '''
     if game.score > 15:
         limited_amt_of_rocks = len(game.rocks_list) < 6
         random_chance = randint(1, 100) == 25
@@ -392,22 +622,42 @@ def make_rocks(game: Game):
 
 
 def get_angle(first_object, second_object):
+    '''
+    Calculate the angle between two objects.
+    Args:
+        first_object: The first object.
+        second_object: The second object.
+    Returns:
+        float: The angle between the two objects.
+    '''
     delta_y = second_object.y - first_object.y
     delta_x = second_object.x - first_object.x
     return math.degrees(math.atan2(delta_y, delta_x)) % 360
 
 
 def update_score(game: Game):
-    """ Update the score """
+    '''
+    Update the game score display.
+    Args:
+        game (Game): The game state.
+    '''
     game.counter.text = "Score: " + str(game.score)
 
 
 def set_background():
+    '''
+    Set the game background.
+    '''
     background = background_image(
         "https://images.pexels.com/photos/957061/milky-way-starry-sky-night-sky-star-957061.jpeg?cs=srgb&dl=pexels-felix-mittermeier-957061.jpg&fm=jpg")
 
 
 def flash_game_over(game: Game):
+    '''
+    Displays a game-over message based on the player's score.
+    Args:
+        game (Game): The game state
+    '''
     if game.score < 10:
         game.counter.text = "Really? Thats the best you can do? FINAL SCORE: " + str(game.score)
     elif game.score < 30:
@@ -425,9 +675,14 @@ def flash_game_over(game: Game):
 
 
 def create_game() -> Game:
+    '''
+    Creates the initial game state.
+    Returns:
+        Game: The initial game state
+    '''
     return Game(create_character(), 0, 0, [], [], [], [], [], 0, [], text("white", 'Score:', 25, 400, 50), False, 0.0,
                 7.0,
-                False, 0.0, 3.0, 1.3, 3.0, 20, 30)
+                False, 0.0, 3.0, 1.3, 3.0, 20, 30, )
 
 
 when('starting', create_game)
